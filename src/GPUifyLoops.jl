@@ -104,8 +104,8 @@ function split_kwargs(kwargs)
     return compiler_kwargs, call_kwargs
 end
 
-@init @require CUDAnative="be33ccc6-a3ff-5ff2-a52e-74243cff1e17" begin
-    using .CUDAnative
+@init @require CUDA="052768ef-5323-5732-b1bb-66c8b64840ba" begin
+    using .CUDA
 
     function version_check()
         project = joinpath(dirname(pathof(CUDAnative)), "../Project.toml")
@@ -152,8 +152,8 @@ isdevice() = isdevice(backend())
 sync(::CPU) = nothing
 sync() = sync(backend())
 
-@init @require CUDAnative="be33ccc6-a3ff-5ff2-a52e-74243cff1e17" begin
-    using .CUDAnative
+@init @require CUDA="052768ef-5323-5732-b1bb-66c8b64840ba" begin
+    using .CUDA
     sync(::CUDA) = CUDAnative.sync_threads()
 end
 
